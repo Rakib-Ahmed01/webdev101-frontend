@@ -3,9 +3,17 @@ const PricingPlan = () => {
     <div>
       <div className="bg-white dark:bg-gray-900">
         <div className="container px-6 py-8 mx-auto">
-          <h1 className="text-3xl font-semibold text-center text-gray-800 capitalize lg:text-4xl dark:text-white">
-            Pricing Plan
-          </h1>
+          <div className="flex flex-col items-center">
+            <h1 className="text-3xl font-semibold text-center text-gray-800 capitalize lg:text-4xl dark:text-white">
+              Pricing Plan
+            </h1>
+
+            <div className="mx-auto">
+              <span className="inline-block w-48 h-1 bg-blue-500 rounded-full"></span>
+              <span className="inline-block w-3 h-1 ml-1 bg-blue-500 rounded-full"></span>
+              <span className="inline-block w-1 h-1 ml-1 bg-blue-500 rounded-full"></span>
+            </div>
+          </div>
 
           <p className="max-w-2xl mx-auto mt-4 text-center text-gray-500 xl:mt-6 dark:text-gray-300">
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Alias quas
