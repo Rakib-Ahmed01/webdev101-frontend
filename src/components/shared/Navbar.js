@@ -112,7 +112,7 @@ const Navbar = () => {
               <div className="lg:max-w-lg">
                 <h1 className="text-2xl font-semibold text-gray-800 uppercase dark:text-white lg:text-3xl">
                   Best Place To Build Up Your{' '}
-                  <span className="font-bold text-blue-600">
+                  <span className="font-bold text-blue-500">
                     Web Development{' '}
                   </span>
                   Career
