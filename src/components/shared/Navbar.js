@@ -1,11 +1,27 @@
-import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useContext, useState } from 'react';
+import { toast } from 'react-hot-toast';
+import { BsFillSunFill, BsMoonStarsFill } from 'react-icons/bs';
+import { FiLogOut } from 'react-icons/fi';
+import { Link, NavLink } from 'react-router-dom';
 import logo from '../../assets/images/logo.png';
+import { AuthContext } from '../../contexts/UserContext';
 
 const Navbar = () => {
+  const [dark, setDark] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+
+  const { user, loading, logout } = useContext(AuthContext);
+
+  const changeTheme = (theme) => {
+    if (theme) {
+      toast.success('Light mode enabled');
+    } else {
+      toast.success('Dark mode enabled');
+    }
+  };
+
   return (
-    <div>
+    <div className="header">
       <header className="bg-white dark:bg-gray-900">
         <nav className="relative bg-white dark:bg-gray-900">
           <div className="container px-6 py-4 mx-auto md:flex md:justify-between md:items-center">
@@ -13,7 +29,7 @@ const Navbar = () => {
               <div className="flex gap-1 items-center">
                 <img src={logo} className="w-10 h-10" alt="logo" />
                 <NavLink
-                  className="text-2xl font-bold  transition-colors duration-300 transform dark:text-white lg:text-3xl hover:text-gray-700 dark:hover:text-gray-300 text-blue-500"
+                  className="text-2xl font-bold  transition-colors duration-300 transform dark:text-white lg:text-3xl border-b-2 border-blue-500 hover:text-gray-700 dark:hover:text-gray-300 text-blue-500"
                   to="/"
                 >
                   {' '}
@@ -72,36 +88,75 @@ const Navbar = () => {
             >
               <div className="flex flex-col md:flex-row md:items-center md:mx-6">
                 <NavLink
-                  className="my-2 font-medium text-base text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
+                  className="my-2 font-medium text-base text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-3 md:my-0"
                   to="/home"
                 >
                   Home
                 </NavLink>
                 <NavLink
-                  className="my-2 font-medium text-base text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
-                  to="/courses"
+                  className="my-2 font-medium text-base text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-3 md:my-0"
+                  to="/all-courses"
                 >
                   Courses
                 </NavLink>
                 <NavLink
-                  className="my-2 font-medium text-base text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
+                  className="my-2 font-medium text-base text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-3 md:my-0"
                   to="/faq"
                 >
                   FAQ
                 </NavLink>
                 <NavLink
-                  className="my-2 font-medium text-base text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-4 md:my-0"
+                  className="my-2 font-medium text-base text-gray-700 transition-colors duration-300 transform dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 md:mx-3 md:my-0"
                   to="/blog"
                 >
                   Blog
                 </NavLink>
-                <NavLink className="my-2 outline-btn md:mx-4" to="/login">
-                  Login
-                </NavLink>
 
-                <NavLink className="btn my-2 md:mx-4" to="/register">
-                  Register
-                </NavLink>
+                <div className="my-2 md:mx-3">
+                  {dark ? (
+                    <BsFillSunFill
+                      title="Toogle Theme"
+                      onClick={() => {
+                        setDark(!dark);
+                        changeTheme(dark);
+                      }}
+                    />
+                  ) : (
+                    <BsMoonStarsFill
+                      title="Toogle Theme"
+                      onClick={() => {
+                        setDark(!dark);
+                        changeTheme(dark);
+                      }}
+                    />
+                  )}
+                </div>
+
+                {!user ? (
+                  <>
+                    {' '}
+                    <Link className="my-2 outline-btn md:mx-3" to="/login">
+                      Login
+                    </Link>
+                    <Link className="btn my-2 md:mx-3" to="/register">
+                      Register
+                    </Link>
+                  </>
+                ) : (
+                  <>
+                    <img
+                      src={user.photoURL}
+                      alt={user.displayName}
+                      title={user.displayName}
+                      className="my-2 md:mx-3 block w-8 h-8 rounded-full"
+                    />
+                    <FiLogOut
+                      className="my-2 md:mx-3"
+                      title="logout"
+                      onClick={logout}
+                    />
+                  </>
+                )}
               </div>
             </div>
           </div>

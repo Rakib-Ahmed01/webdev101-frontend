@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { HashLoader } from 'react-spinners';
+import { AuthContext } from '../../contexts/UserContext';
 import Categories from '../Categories';
 
 const Sidebar = () => {
   const [categories, setCategories] = useState(null);
+  const { user, loading, logout } = useContext(AuthContext);
 
   useEffect(() => {
     fetch('https://webdev101-server.vercel.app/courses-categories')
@@ -13,31 +15,45 @@ const Sidebar = () => {
       .catch((err) => alert(err));
   }, []);
 
-  return (
-    <div className=" sticky top-0">
-      <div className="flex flex-col w-48 md:w-64 h-screen py-8 bg-white border-r dark:bg-gray-900 dark:border-gray-700">
-        {false ? (
-          <div className="flex flex-col px-2 gap-3">
-            <NavLink className="outline-btn" to="/login">
-              Login
-            </NavLink>
+  // if (loading) {
+  //   return (
+  //     <div>
+  //       <HashLoader color="#3b82f6" />
+  //     </div>
+  //   );
+  // }
 
-            <NavLink className="btn " to="/register">
+  return (
+    <div className="sidebar sticky top-0 border-r-1 border-gray-200">
+      <div className="flex flex-col w-48 md:w-64 h-screen py-8 bg-white  dark:bg-gray-900 dark:border-gray-700">
+        {!user ? (
+          <div className="flex flex-col px-2">
+            <Link className="outline-btn block -mb-2" to="/login">
+              Login
+            </Link>
+            <div className="flex items-center justify-between mt-4">
+              <span className="w-2/5 border-b dark:border-gray-600 lg:w-2/5"></span>
+
+              <p>Or</p>
+
+              <span className="w-2/5 border-b dark:border-gray-400 lg:w-2/5"></span>
+            </div>
+            <Link className="btn block mt-1" to="/register">
               Register
-            </NavLink>
+            </Link>
           </div>
         ) : (
           <div className="flex flex-col items-center mt-6 -mx-2">
             <img
               className="object-cover w-24 h-24 mx-2 rounded-full"
-              src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80"
+              src={user?.photoURL}
               alt="avatar"
             />
             <h4 className="mx-2 mt-2 font-medium text-gray-800 dark:text-gray-200 hover:underline">
-              John Doe
+              {user?.displayName}
             </h4>
             <p className="mx-2 mt-1 text-sm font-medium text-gray-600 dark:text-gray-400 hover:underline">
-              john@example.com
+              {user?.email}
             </p>
           </div>
         )}

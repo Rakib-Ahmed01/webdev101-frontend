@@ -7,11 +7,11 @@ const CoursesLayout = () => {
   return (
     <div className="relative">
       <Navbar />
-      <div className="flex">
+      <div className="flex gap-3 pr-3">
         <div className="h-screen sticky top-0">
           <Sidebar />
         </div>
-        <div>
+        <div className="w-full">
           <Outlet />
         </div>
       </div>

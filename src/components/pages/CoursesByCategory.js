@@ -1,7 +1,7 @@
 import { useLoaderData } from 'react-router-dom';
 import Course from '../Course';
 
-export default function Courses() {
+export default function CoursesByCategory() {
   const allCourses = useLoaderData();
 
   return (

@@ -1,10 +1,15 @@
+import { Toaster } from 'react-hot-toast';
 import { RouterProvider } from 'react-router-dom';
+import UserContext from './contexts/UserContext';
 import router from './routes/routes';
 
 function App() {
   return (
     <>
-      <RouterProvider router={router} />
+      <UserContext>
+        <RouterProvider router={router} />
+        <Toaster />
+      </UserContext>
     </>
   );
 }
