@@ -22,7 +22,7 @@ const PricingPlan = () => {
           </p>
 
           <div className="grid grid-cols-1 gap-8 mt-6 xl:mt-12 xl:gap-12 md:grid-cols-2 lg:grid-cols-3">
-            <div className="w-full p-8 space-y-8 text-center border border-gray-200 rounded-lg dark:border-gray-700">
+            <div className="w-full p-8 space-y-8 text-center border border-blue-200 rounded-lg dark:border-gray-700">
               <p className="font-medium text-gray-500 uppercase dark:text-gray-300">
                 Free
               </p>
@@ -56,7 +56,7 @@ const PricingPlan = () => {
               </button>
             </div>
 
-            <div className="w-full p-8 space-y-8 text-center border border-gray-200 rounded-lg dark:border-gray-700">
+            <div className="w-full p-8 space-y-8 text-center border border-blue-200 rounded-lg dark:border-gray-700">
               <p className="font-medium text-gray-500 uppercase dark:text-gray-300">
                 Active Learner
               </p>

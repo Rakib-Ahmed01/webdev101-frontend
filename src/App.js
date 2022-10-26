@@ -1,20 +1,11 @@
-import Features from './components/Features';
-import TopInstructor from './components/Instructors';
-import PricingPlan from './components/PricingPlan';
-import RegisterNow from './components/RegisterNow';
-import Navbar from './components/shared/Navbar';
-import Testimonial from './components/Testimonial';
+import { RouterProvider } from 'react-router-dom';
+import router from './routes/routes';
 
 function App() {
   return (
-    <div>
-      <Navbar />
-      <Features />
-      <RegisterNow />
-      <PricingPlan />
-      <TopInstructor />
-      <Testimonial />
-    </div>
+    <>
+      <RouterProvider router={router} />
+    </>
   );
 }
 
