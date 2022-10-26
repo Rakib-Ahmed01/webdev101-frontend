@@ -1,3 +1,13 @@
+import { useLoaderData } from 'react-router-dom';
+
 export default function Courses() {
-  return <div>Courses</div>;
+  const allCourses = useLoaderData();
+
+  return (
+    <div>
+      {allCourses.map((course) => {
+        return <div key={course.id}>Courses</div>;
+      })}
+    </div>
+  );
 }

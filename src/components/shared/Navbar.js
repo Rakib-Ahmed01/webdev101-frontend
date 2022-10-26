@@ -99,7 +99,9 @@ const Navbar = () => {
                   Login
                 </NavLink>
 
-                <button className="btn my-2 md:mx-4">Register</button>
+                <NavLink className="btn my-2 md:mx-4" to="/register">
+                  Register
+                </NavLink>
               </div>
             </div>
           </div>
