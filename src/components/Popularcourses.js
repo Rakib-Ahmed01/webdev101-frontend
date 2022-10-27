@@ -11,7 +11,6 @@ const Popularcourses = () => {
       .catch((err) => alert(err));
   }, []);
 
-  console.log(courses);
   return (
     <div>
       <div className="bg-white dark:bg-gray-900">
