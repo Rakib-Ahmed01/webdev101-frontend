@@ -19,16 +19,12 @@ export default function UserContext({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  console.log(user);
-
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log('Logged In!');
         setUser(user);
         setLoading(false);
       } else {
-        console.log('Logged Out!');
         setLoading(false);
       }
     });
@@ -52,11 +48,9 @@ export default function UserContext({ children }) {
       displayName: name,
       photoURL: url ? url : 'https://source.unsplash.com/random/People',
     })
-      .then(() => {
-        console.log('Profile Updated');
-      })
+      .then(() => {})
       .catch((error) => {
-        alert('Error Occured!', error);
+        toast.error(error.message.replace('Firebase: ', ''));
       });
   };
 
@@ -65,21 +59,23 @@ export default function UserContext({ children }) {
     return signInWithPopup(auth, provider);
   };
 
-  const logout = () => {
+  const logout = (code) => {
     signOut(auth)
       .then(() => {
-        console.log('Sign-out successful.');
+        if (code) {
+          toast.success('Logged out successfully');
+        }
         setUser(null);
       })
       .catch((error) => {
-        console.log('An error happened.', error);
+        toast.error(error.message.replace('Firebase: ', ''));
       });
   };
 
   const verifyEmail = () => {
     sendEmailVerification(auth.currentUser)
       .then(() => {})
-      .catch((err) => toast.error(err.message));
+      .catch((err) => toast.error(err.message.replace('Firebase: ', '')));
   };
 
   const value = {

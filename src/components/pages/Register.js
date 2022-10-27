@@ -1,5 +1,6 @@
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import { useContext, useState } from 'react';
+import toast from 'react-hot-toast';
 import { BsGithub } from 'react-icons/bs';
 import { FcGoogle } from 'react-icons/fc';
 import { Link, useNavigate } from 'react-router-dom';
@@ -31,18 +32,20 @@ export default function SignUp() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(data);
 
     createUserWithMailAndPass(email, password)
       .then((res) => {
         updateUserProfile(name, url);
         e.target.reset();
+        toast.success(
+          `We've sent a verification mail to you email(Spam Folder). Please verify your email`
+        );
         verifyEmail();
-        logout();
+        logout(false);
         navigate('/login');
       })
       .catch((err) => {
-        alert(err.message);
+        toast.error(err.message.replace('Firebase: ', ''));
       });
   };
 
@@ -50,11 +53,11 @@ export default function SignUp() {
     const googleProvider = new GoogleAuthProvider();
     signInWithProvider(googleProvider)
       .then((res) => {
-        console.log('User created!');
+        toast.success('Logged In Successfully');
         navigate('/all-courses');
       })
       .catch((err) => {
-        alert(err.message);
+        toast.error(err.message.replace('Firebase: ', ''));
       });
   };
 
@@ -62,22 +65,34 @@ export default function SignUp() {
     const githubProvider = new GithubAuthProvider();
     signInWithProvider(githubProvider)
       .then((res) => {
-        console.log('User created!');
+        toast.success('Logged In Successfully');
         navigate('/all-courses');
       })
       .catch((err) => {
-        alert(err.message);
+        toast.error(err.message.replace('Firebase: ', ''));
       });
   };
 
   return (
     <div className="flex flex-col justify-center items-center h-screen  w-full">
-      <h3 className="text-2xl font-medium mb-2">Register</h3>
+      <div className="flex flex-col items-center mb-2">
+        <h1 className="text-3xl font-semibold text-center text-gray-800 capitalize lg:text-4xl dark:text-white -mb-1">
+          Register
+        </h1>
+
+        <div className="mx-auto">
+          <span className="inline-block w-32 h-1 bg-blue-500 rounded-full"></span>
+          <span className="inline-block w-3 h-1 ml-1 bg-blue-500 rounded-full"></span>
+          <span className="inline-block w-1 h-1 ml-1 bg-blue-500 rounded-full"></span>
+        </div>
+      </div>
       <div className="md:w-[450px] mx-auto ">
         <div className="border rounded">
           <form className="p-3" onSubmit={handleSubmit}>
             <div className=" flex flex-col justify-center ">
-              <label htmlFor="name">Name</label>
+              <label htmlFor="name">
+                Name<span className="text-red-500">*</span>
+              </label>
               <input
                 type="name"
                 name="name"
@@ -85,10 +100,11 @@ export default function SignUp() {
                 placeholder="Enter Your Name"
                 className="p-1 rounded-[4px] outline-none border"
                 onBlur={handleChange}
+                required
               />
             </div>
             <div className=" flex flex-col justify-center ">
-              <label htmlFor="url">Profile Picture (url)</label>
+              <label htmlFor="url">Profile Picture URL (optional)</label>
               <input
                 type="url"
                 name="url"
@@ -99,7 +115,9 @@ export default function SignUp() {
               />
             </div>
             <div className=" flex flex-col justify-center ">
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">
+                Email<span className="text-red-500">*</span>
+              </label>
               <input
                 type="email"
                 name="email"
@@ -107,10 +125,13 @@ export default function SignUp() {
                 placeholder="Enter Your Email"
                 className="p-1 rounded-[4px] outline-none border"
                 onBlur={handleChange}
+                required
               />
             </div>
             <div className=" flex flex-col justify-center ">
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password">
+                Password<span className="text-red-500">*</span>
+              </label>
               <input
                 type="password"
                 name="password"
@@ -118,6 +139,7 @@ export default function SignUp() {
                 placeholder="Enter Your Password"
                 className="p-1 rounded-[4px] outline-none border"
                 onBlur={handleChange}
+                required
               />
             </div>
             <small>

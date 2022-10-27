@@ -5,6 +5,7 @@ import { BsGithub } from 'react-icons/bs';
 import { FcGoogle } from 'react-icons/fc';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/UserContext';
+// import { AiFillEye } from "react-icons/ai";
 
 export default function Login() {
   const [data, setData] = useState({
@@ -31,17 +32,17 @@ export default function Login() {
 
     signInWithMailAndPass(email, password)
       .then((res) => {
-        console.log('Logged In!');
+        toast.success('Logged In Successfully');
         if (res.user.emailVerified) {
           e.target.reset();
           navigate(path, { replace: true });
         } else {
-          toast.error('Please verify your email...');
-          logout();
+          toast.error('Please verify your email');
+          logout(false);
         }
       })
       .catch((err) => {
-        toast.error(err.message);
+        toast.error(err.message.replace('Firebase: ', ''));
       });
   };
 
@@ -49,11 +50,11 @@ export default function Login() {
     const googleProvider = new GoogleAuthProvider();
     signInWithProvider(googleProvider)
       .then((res) => {
-        console.log('User created!');
+        toast.success('Registered & Logged In Successfully');
         navigate(path, { replace: true });
       })
       .catch((err) => {
-        alert(err.message);
+        toast.error(err.message.replace('Firebase: ', ''));
       });
   };
 
@@ -61,22 +62,34 @@ export default function Login() {
     const githubProvider = new GithubAuthProvider();
     signInWithProvider(githubProvider)
       .then((res) => {
-        console.log('User created!');
+        toast.success('Registered & Logged In Successfully');
         navigate(path, { replace: true });
       })
       .catch((err) => {
-        alert(err.message);
+        toast.error(err.message.replace('Firebase: ', ''));
       });
   };
 
   return (
     <div className="flex flex-col justify-center items-center h-screen">
-      <h3 className="text-2xl font-medium mb-2">Login</h3>
+      <div className="flex flex-col items-center mb-2">
+        <h1 className="text-3xl font-semibold text-center text-gray-800 capitalize lg:text-4xl dark:text-white -mb-1">
+          Login
+        </h1>
+
+        <div className="mx-auto">
+          <span className="inline-block w-32 h-1 bg-blue-500 rounded-full"></span>
+          <span className="inline-block w-3 h-1 ml-1 bg-blue-500 rounded-full"></span>
+          <span className="inline-block w-1 h-1 ml-1 bg-blue-500 rounded-full"></span>
+        </div>
+      </div>
       <div className="mx-auto  md:w-[450px]">
         <div className="border rounded">
           <form className="p-3" onSubmit={handleSubmit}>
             <div className=" flex flex-col justify-center ">
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">
+                Email<span className="text-red-500">*</span>
+              </label>
               <input
                 type="email"
                 name="email"
@@ -85,18 +98,22 @@ export default function Login() {
                 className="p-1 rounded-[4px] outline-none border"
                 value={email}
                 onChange={handleChange}
+                required
               />
             </div>
             <div className=" flex flex-col justify-center ">
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password">
+                Password<span className="text-red-500">*</span>
+              </label>
               <input
                 type="password"
                 name="password"
                 id="password"
-                placeholder="Enter Your Password"
+                placeholder={`Enter Your Password`}
                 className="p-1 rounded-[4px] outline-none border"
                 value={password}
                 onChange={handleChange}
+                required
               />
             </div>
             <small className="block underline text-blue-500">

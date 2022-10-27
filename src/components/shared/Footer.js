@@ -1,6 +1,9 @@
+import { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../../contexts/UserContext';
 
 const Footer = () => {
+  const { user } = useContext(AuthContext);
   return (
     <div>
       <footer className="bg-white dark:bg-gray-900">
@@ -18,31 +21,35 @@ const Footer = () => {
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
             </p>
 
-            <div className="flex flex-col md:hidden px-2">
-              <Link className="outline-btn block -mb-2" to="/login">
-                Login
-              </Link>
-              <div className="flex items-center justify-between mt-4">
-                <span className="w-2/5 border-b dark:border-gray-600 lg:w-2/5"></span>
+            {!user && (
+              <>
+                <div className="flex flex-col md:hidden px-2">
+                  <Link className="outline-btn block -mb-2" to="/login">
+                    Login
+                  </Link>
+                  <div className="flex items-center justify-between mt-4">
+                    <span className="w-2/5 border-b dark:border-gray-600 lg:w-2/5"></span>
 
-                <p>Or</p>
+                    <p>Or</p>
 
-                <span className="w-2/5 border-b dark:border-gray-400 lg:w-2/5"></span>
-              </div>
-              <Link className="btn block mt-1" to="/register">
-                Register
-              </Link>
-            </div>
+                    <span className="w-2/5 border-b dark:border-gray-400 lg:w-2/5"></span>
+                  </div>
+                  <Link className="btn block mt-1" to="/register">
+                    Register
+                  </Link>
+                </div>
 
-            <div className="hidden md:flex flex-col mt-1 sm:flex-row sm:items-center sm:justify-center">
-              <NavLink className="my-2 outline-btn sm:mx-4" to="/login">
-                Login
-              </NavLink>
+                <div className="hidden md:flex flex-col mt-1 sm:flex-row sm:items-center sm:justify-center">
+                  <NavLink className="my-2 outline-btn sm:mx-4" to="/login">
+                    Login
+                  </NavLink>
 
-              <Link className="btn" to="/register">
-                Register
-              </Link>
-            </div>
+                  <Link className="btn" to="/register">
+                    Register
+                  </Link>
+                </div>
+              </>
+            )}
           </div>
 
           <hr className="my-10 border-gray-200 dark:border-gray-700" />

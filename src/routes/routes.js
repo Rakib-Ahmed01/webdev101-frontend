@@ -1,8 +1,10 @@
 import { createBrowserRouter } from 'react-router-dom';
+import Blog from '../components/pages/Blog';
 import Checkout from '../components/pages/Checkout';
 import CourseDetails from '../components/pages/CourseDetails';
 import Courses from '../components/pages/Courses';
 import CoursesByCategory from '../components/pages/CoursesByCategory';
+import Error from '../components/pages/Error';
 import Home from '../components/pages/Home';
 import Login from '../components/pages/Login';
 import SignUp from '../components/pages/Register';
@@ -21,6 +23,7 @@ const router = createBrowserRouter([
   {
     path: '/all-courses',
     element: <CoursesLayout />,
+    errorElement: <Error />,
     children: [
       {
         index: true,
@@ -37,6 +40,7 @@ const router = createBrowserRouter([
   {
     path: '/courses/:categoryId',
     element: <CoursesLayout />,
+    errorElement: <Error />,
     children: [
       {
         index: true,
@@ -60,6 +64,7 @@ const router = createBrowserRouter([
   {
     path: '/login',
     element: <CoursesLayout />,
+    errorElement: <Error />,
     children: [
       {
         index: true,
@@ -74,6 +79,7 @@ const router = createBrowserRouter([
   {
     path: '/register',
     element: <CoursesLayout />,
+    errorElement: <Error />,
     children: [
       {
         index: true,
@@ -85,30 +91,10 @@ const router = createBrowserRouter([
       },
     ],
   },
-  // {
-  //   path: '/checkout',
-  //   element: <CoursesLayout />,
-  //   children: [
-  //     {
-  //       index: true,
-  //       element: <PrivateRoute />,
-  //       children: [
-  //         {
-  //           path: '/checkout/:id',
-  //           element: <Checkout />,
-  //           loader: ({ params }) => {
-  //             return fetch(
-  //               `https://webdev101-server.vercel.app/all-courses/${params.id}`
-  //             );
-  //           },
-  //         },
-  //       ],
-  //     },
-  //   ],
-  // },
   {
     path: '/checkout/:id',
     element: <CoursesLayout />,
+    errorElement: <Error />,
     children: [
       {
         index: true,
@@ -126,8 +112,18 @@ const router = createBrowserRouter([
     ],
   },
   {
+    path: '/blog',
+    element: <CoursesLayout />,
+    children: [
+      {
+        path: '/blog',
+        element: <Blog />,
+      },
+    ],
+  },
+  {
     path: '*',
-    element: <h1>Page Not Found!</h1>,
+    element: <Error />,
   },
 ]);
 

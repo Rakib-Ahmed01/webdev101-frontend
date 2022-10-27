@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import learning from '../assets/images/learning.svg';
 
 const Banner = () => {
@@ -21,7 +22,9 @@ const Banner = () => {
                 perspiciatis optio.
               </p>
 
-              <button className="btn mt-6">Register Now</button>
+              <Link to="/register" className="btn mt-6 inline-block">
+                Register Now
+              </Link>
             </div>
           </div>
 
