@@ -1,4 +1,5 @@
 import { AiFillStar } from 'react-icons/ai';
+import { BsDownload } from 'react-icons/bs';
 import { MdDone } from 'react-icons/md';
 import { useLoaderData } from 'react-router-dom';
 
@@ -17,8 +18,14 @@ const CourseDetails = () => {
   } = course;
   return (
     <div className="">
-      <div className="flex flex-col items-center justify-center mb-2">
-        <h2 className="text-center text-2xl font-semibold">{title}</h2>
+      <div className="flex items-center justify-between mx-auto max-w-2xl mb-2 gap-5 ">
+        <h2 className="text-center text-2xl font-semibold max-w-2xl">
+          {title}
+        </h2>
+        <BsDownload
+          className="text-2xl font-semibold basis-[50px] md:-mr-2"
+          title="Download course details"
+        />
       </div>
       <div className="course-details h-full border rounded-sm mx-auto max-w-2xl ">
         <div>

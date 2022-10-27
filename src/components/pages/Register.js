@@ -1,4 +1,4 @@
-import { GoogleAuthProvider } from 'firebase/auth';
+import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import { useContext, useState } from 'react';
 import { BsGithub } from 'react-icons/bs';
 import { FcGoogle } from 'react-icons/fc';
@@ -51,7 +51,19 @@ export default function SignUp() {
     signInWithProvider(googleProvider)
       .then((res) => {
         console.log('User created!');
-        navigate('/');
+        navigate('/all-courses');
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
+
+  const signUpWithGitHub = () => {
+    const githubProvider = new GithubAuthProvider();
+    signInWithProvider(githubProvider)
+      .then((res) => {
+        console.log('User created!');
+        navigate('/all-courses');
       })
       .catch((err) => {
         alert(err.message);
@@ -60,7 +72,8 @@ export default function SignUp() {
 
   return (
     <div className="flex flex-col justify-center items-center h-screen  w-full">
-      <div className="w-[450px] mx-auto ">
+      <h3 className="text-2xl font-medium mb-2">Register</h3>
+      <div className="md:w-[450px] mx-auto ">
         <div className="border rounded">
           <form className="p-3" onSubmit={handleSubmit}>
             <div className=" flex flex-col justify-center ">
@@ -130,6 +143,7 @@ export default function SignUp() {
           <button
             type="submit"
             className="btn flex items-center justify-center w-full my-2 gap-1"
+            onClick={signUpWithGitHub}
           >
             <BsGithub className="text-xl mt-[2px]" />
             <span>Sign In With GitHub</span>
