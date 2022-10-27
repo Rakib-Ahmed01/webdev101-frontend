@@ -50,7 +50,7 @@ export default function Login() {
     const googleProvider = new GoogleAuthProvider();
     signInWithProvider(googleProvider)
       .then((res) => {
-        toast.success('Registered & Logged In Successfully');
+        toast.success('Logged In Successfully');
         navigate(path, { replace: true });
       })
       .catch((err) => {
@@ -62,7 +62,7 @@ export default function Login() {
     const githubProvider = new GithubAuthProvider();
     signInWithProvider(githubProvider)
       .then((res) => {
-        toast.success('Registered & Logged In Successfully');
+        toast.success('Logged In Successfully');
         navigate(path, { replace: true });
       })
       .catch((err) => {

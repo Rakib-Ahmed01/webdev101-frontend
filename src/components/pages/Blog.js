@@ -21,7 +21,7 @@ export default function Blog() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-5 mt-8 md:grid-cols-2 lg:grid-cols-3 auto-rows-fr">
+        <div className="grid grid-cols-1 gap-5 mt-8 lg:grid-cols-2 auto-rows-fr">
           <div className="h-full rounded-md shadow">
             <img
               className="relative z-10 object-cover w-full rounded-md h-96"
@@ -68,7 +68,7 @@ export default function Blog() {
                 than 15 lines of code.
               </p>
 
-              <ul className="mt-3 text-sm text-gray-500 dark:text-gray-300  list-decimal">
+              <ul className="mt-3 text-sm text-gray-500 dark:text-gray-300  list-decimal ml-4">
                 <li>Phone</li>
                 <li>Google Play</li>
                 <li>Apple</li>
