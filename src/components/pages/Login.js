@@ -50,7 +50,7 @@ export default function Login() {
     signInWithProvider(googleProvider)
       .then((res) => {
         console.log('User created!');
-        navigate('/all-courses');
+        navigate(path, { replace: true });
       })
       .catch((err) => {
         alert(err.message);
@@ -62,7 +62,7 @@ export default function Login() {
     signInWithProvider(githubProvider)
       .then((res) => {
         console.log('User created!');
-        navigate('/all-courses');
+        navigate(path, { replace: true });
       })
       .catch((err) => {
         alert(err.message);

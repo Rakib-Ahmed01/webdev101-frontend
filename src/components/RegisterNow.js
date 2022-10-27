@@ -1,3 +1,5 @@
+import { NavLink } from 'react-router-dom';
+
 const RegisterNow = () => {
   return (
     <div>
@@ -9,12 +11,12 @@ const RegisterNow = () => {
 
           <div className="mt-6 sm:-mx-2">
             <div className="inline-flex w-full sm:w-auto sm:mx-2">
-              <a
-                href="/"
+              <NavLink
+                to="/register"
                 className="inline-flex items-center justify-center w-full px-5 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-80"
               >
                 Register Now
-              </a>
+              </NavLink>
             </div>
           </div>
         </div>

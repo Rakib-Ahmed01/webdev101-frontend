@@ -1,4 +1,5 @@
 import { createBrowserRouter } from 'react-router-dom';
+import Checkout from '../components/pages/Checkout';
 import CourseDetails from '../components/pages/CourseDetails';
 import Courses from '../components/pages/Courses';
 import CoursesByCategory from '../components/pages/CoursesByCategory';
@@ -6,6 +7,7 @@ import Home from '../components/pages/Home';
 import Login from '../components/pages/Login';
 import SignUp from '../components/pages/Register';
 import CoursesLayout from '../layouts/CoursesLayout';
+import PrivateRoute from '../PrivateRoute/PrivateRoute';
 
 const router = createBrowserRouter([
   {
@@ -80,6 +82,46 @@ const router = createBrowserRouter([
       {
         path: '/register',
         element: <SignUp />,
+      },
+    ],
+  },
+  // {
+  //   path: '/checkout',
+  //   element: <CoursesLayout />,
+  //   children: [
+  //     {
+  //       index: true,
+  //       element: <PrivateRoute />,
+  //       children: [
+  //         {
+  //           path: '/checkout/:id',
+  //           element: <Checkout />,
+  //           loader: ({ params }) => {
+  //             return fetch(
+  //               `https://webdev101-server.vercel.app/all-courses/${params.id}`
+  //             );
+  //           },
+  //         },
+  //       ],
+  //     },
+  //   ],
+  // },
+  {
+    path: '/checkout/:id',
+    element: <CoursesLayout />,
+    children: [
+      {
+        index: true,
+        element: (
+          <PrivateRoute>
+            <Checkout />
+          </PrivateRoute>
+        ),
+        loader: ({ params }) => {
+          return fetch(
+            `https://webdev101-server.vercel.app/all-courses/${params.id}`
+          );
+        },
       },
     ],
   },

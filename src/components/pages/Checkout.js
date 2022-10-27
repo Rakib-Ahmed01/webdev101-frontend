@@ -1,9 +1,9 @@
+import { toast } from 'react-hot-toast';
 import { AiFillStar } from 'react-icons/ai';
-import { BsDownload } from 'react-icons/bs';
 import { MdDone } from 'react-icons/md';
-import { Link, useLoaderData } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 
-const CourseDetails = () => {
+const Checkout = () => {
   const [course] = useLoaderData();
   const {
     image,
@@ -16,20 +16,28 @@ const CourseDetails = () => {
     price,
     isPopular,
   } = course;
+
+  const buyCourse = () => {
+    toast.success('Course is added to your account');
+  };
+
   return (
     <div className="">
-      <div className="flex items-center justify-between mx-auto max-w-2xl mb-2 gap-5 ">
-        <h2 className="text-center text-2xl font-semibold max-w-2xl">
-          {title}
-        </h2>
-        <BsDownload
-          className="text-2xl font-semibold basis-[50px] md:-mr-2"
-          title="Download course details"
-        />
+      <div className="flex flex-col justify-center">
+        <h2 className="text-center -mb-2 text-4xl font-bold">Checkout</h2>
+        <div className=" mx-auto mb-2">
+          <span className="inline-block w-40 h-1 bg-blue-500 rounded-full"></span>
+          <span className="inline-block w-3 h-1 ml-1 bg-blue-500 rounded-full"></span>
+          <span className="inline-block w-1 h-1 ml-1 bg-blue-500 rounded-full"></span>
+        </div>
       </div>
       <div className="course-details h-full border rounded-sm mx-auto max-w-2xl ">
         <div>
-          <img src={image} alt={title} className="w-full" />
+          <img
+            src={image}
+            alt={title}
+            className="w-full h-[350px] object-contain"
+          />
         </div>
         <div className=" p-2 relative">
           <h2 className="text-xl text-gray-800 font-medium mb-1">{title}</h2>
@@ -76,9 +84,10 @@ const CourseDetails = () => {
           </div>
         </div>
       </div>
-      <Link to={`/checkout/${id}`}>
-        <button className="btn block mx-auto my-3">Get Premium Access</button>
-      </Link>
+
+      <button className="btn block mx-auto my-3" onClick={buyCourse}>
+        Buy This Course
+      </button>
     </div>
   );
 };
@@ -90,4 +99,4 @@ const points = [
   'Build a lots of projects',
 ];
 
-export default CourseDetails;
+export default Checkout;

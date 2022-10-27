@@ -15,7 +15,7 @@ const Categories = ({ categories }) => {
         );
       })}
       <NavLink
-        className="flex items-center px-4 py-2 text-gray-700 hover:bg-blue-100 dark:bg-gray-800 dark:text-gray-200"
+        className="flex items-center px-4 py-2 text-gray-700 rounded-r-full hover:bg-blue-100 dark:bg-gray-800 dark:text-gray-200"
         to={`/all-courses`}
       >
         <span className="mx-4 font-medium">All Courses</span>
