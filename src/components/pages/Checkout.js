@@ -1,28 +1,24 @@
+import { createRef } from 'react';
 import { toast } from 'react-hot-toast';
 import { AiFillStar } from 'react-icons/ai';
+import { BsDownload } from 'react-icons/bs';
 import { MdDone } from 'react-icons/md';
 import { useLoaderData } from 'react-router-dom';
+import Pdf from 'react-to-pdf';
+
+const ref = createRef();
 
 const Checkout = () => {
   const [course] = useLoaderData();
-  const {
-    image,
-    title,
-    id,
-    desc,
-    Author,
-    ratings,
-    students,
-    price,
-    isPopular,
-  } = course;
+  const { image, title, desc, Author, ratings, students, price, isPopular } =
+    course;
 
   const buyCourse = () => {
     toast.success('Course is added to your account');
   };
 
   return (
-    <div className="">
+    <div className="" ref={ref}>
       <div className="flex flex-col justify-center">
         <h2 className="text-center -mb-2 text-4xl font-bold">Checkout</h2>
         <div className=" mx-auto mb-2">
@@ -30,6 +26,20 @@ const Checkout = () => {
           <span className="inline-block w-3 h-1 ml-1 bg-blue-500 rounded-full"></span>
           <span className="inline-block w-1 h-1 ml-1 bg-blue-500 rounded-full"></span>
         </div>
+      </div>
+      <div className="flex items-center justify-between mx-auto max-w-2xl mb-2 gap-5 ">
+        <h2 className="text-center text-2xl font-semibold max-w-2xl">
+          {title}
+        </h2>
+        <Pdf targetRef={ref} filename={`${title}.pdf`}>
+          {({ toPdf }) => (
+            <BsDownload
+              className="text-2xl font-semibold basis-[50px] md:-mr-2"
+              title="Download course details"
+              onClick={toPdf}
+            />
+          )}
+        </Pdf>
       </div>
       <div className="course-details h-full border rounded-sm mx-auto max-w-2xl ">
         <div>

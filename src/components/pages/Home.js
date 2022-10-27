@@ -4,6 +4,7 @@ import { AuthContext } from '../../contexts/UserContext';
 import Banner from '../Banner';
 import Features from '../Features';
 import TopInstructor from '../Instructors';
+import Popularcourses from '../Popularcourses';
 import PricingPlan from '../PricingPlan';
 import RegisterNow from '../RegisterNow';
 import Footer from '../shared/Footer';
@@ -26,6 +27,7 @@ const Home = () => {
       <Navbar />
       <Banner />
       <Features />
+      <Popularcourses />
       <RegisterNow />
       <PricingPlan />
       <TopInstructor />

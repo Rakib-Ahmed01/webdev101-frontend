@@ -25,7 +25,7 @@ const Sidebar = () => {
 
   return (
     <div className="sidebar sticky top-0 border-r-1 border-gray-200">
-      <div className="flex flex-col w-48 md:w-64 h-screen py-8 bg-white  dark:bg-gray-900 dark:border-gray-700">
+      <div className="flex flex-col w-36 sm:w-48 md:w-64 h-screen py-8 bg-white  dark:bg-gray-900 dark:border-gray-700">
         {!user ? (
           <div className="flex flex-col px-2">
             <Link className="outline-btn block -mb-2" to="/login">
@@ -52,7 +52,7 @@ const Sidebar = () => {
             <h4 className="mx-2 mt-2 font-medium text-gray-800 dark:text-gray-200 hover:underline">
               {user?.displayName}
             </h4>
-            <p className="mx-2 mt-1 text-sm font-medium text-gray-600 dark:text-gray-400 hover:underline">
+            <p className="hidden sm:block mx-2 mt-1 text-sm font-medium text-gray-600 dark:text-gray-400 hover:underline">
               {user?.email}
             </p>
           </div>

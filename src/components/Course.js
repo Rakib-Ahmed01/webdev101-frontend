@@ -16,7 +16,7 @@ export default function Course({ course }) {
   return (
     <Link
       to={`../courses/${category_id}/${id}`}
-      className="course h-full border rounded-sm cursor-pointer"
+      className="course h-full border rounded cursor-pointer"
       title="Learn more about this course"
     >
       <div>
@@ -31,7 +31,7 @@ export default function Course({ course }) {
           </span>
           {`${ratings}(${students})`}
         </h4>
-        <h5 className="text-[17px] font-bold">${price.replace('$', '')}</h5>
+        <h5 className="text-[17px] font-bold">${price?.replace('$', '')}</h5>
         {isPopular && (
           <span className="text-white bg-blue-500 px-4 rounded-sm font-medium py-1 inline-block">
             Bestseller
