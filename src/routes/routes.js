@@ -5,6 +5,7 @@ import CourseDetails from '../components/pages/CourseDetails';
 import Courses from '../components/pages/Courses';
 import CoursesByCategory from '../components/pages/CoursesByCategory';
 import Error from '../components/pages/Error';
+import FAQ from '../components/pages/FAQ';
 import Home from '../components/pages/Home';
 import Login from '../components/pages/Login';
 import SignUp from '../components/pages/Register';
@@ -118,6 +119,16 @@ const router = createBrowserRouter([
       {
         path: '/blog',
         element: <Blog />,
+      },
+    ],
+  },
+  {
+    path: '/faq',
+    element: <CoursesLayout />,
+    children: [
+      {
+        path: '/faq',
+        element: <FAQ />,
       },
     ],
   },

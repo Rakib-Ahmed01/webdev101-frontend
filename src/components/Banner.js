@@ -17,9 +17,10 @@ const Banner = () => {
               </h1>
 
               <p className="mt-2 text-gray-600 dark:text-gray-400">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro
-                beatae error laborum ab amet sunt recusandae? Reiciendis natus
-                perspiciatis optio.
+                Find the right instructor for you. Choose from many topics,
+                skill levels, and languages. Shop thousands of high-quality
+                on-demand online courses. Start learning today. Lifetime Access.
+                Courses in 1+ Languages. Expert Instructors. Over 24+ Courses.
               </p>
 
               <Link to="/register" className="btn mt-6 inline-block">
