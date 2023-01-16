@@ -22,8 +22,10 @@ export default function UserContext({ children }) {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        setUser(user);
-        setLoading(false);
+        setTimeout(() => {
+          setUser(user);
+          setLoading(false);
+        }, 500);
       } else {
         setLoading(false);
       }

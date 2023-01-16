@@ -5,7 +5,6 @@ import { BsGithub } from 'react-icons/bs';
 import { FcGoogle } from 'react-icons/fc';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/UserContext';
-// import { AiFillEye } from "react-icons/ai";
 
 export default function Login() {
   const [data, setData] = useState({
@@ -17,7 +16,7 @@ export default function Login() {
 
   const path = location?.state?.from || '/all-courses';
 
-  const { user, signInWithProvider, signInWithMailAndPass, logout } =
+  const { signInWithProvider, signInWithMailAndPass, logout } =
     useContext(AuthContext);
 
   const { email, password } = data;

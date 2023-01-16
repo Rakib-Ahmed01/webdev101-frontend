@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
+import { BounceLoader } from 'react-spinners';
 import { AuthContext } from '../contexts/UserContext';
 
 export default function PrivateRoute({ children }) {
@@ -7,7 +8,11 @@ export default function PrivateRoute({ children }) {
   const location = useLocation();
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="h-screen flex justify-center items-center w-full">
+        <BounceLoader color="#3b82f6" />
+      </div>
+    );
   }
 
   if (!user) {

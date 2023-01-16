@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { HashLoader } from 'react-spinners';
+import { BounceLoader } from 'react-spinners';
 import { AuthContext } from '../../contexts/UserContext';
 import Banner from '../Banner';
 import Features from '../Features';
@@ -16,12 +16,11 @@ const Home = () => {
 
   if (loading) {
     return (
-      <div className="h-screen justify-center items-center w-full">
-        <HashLoader color="#3b82f6" />
+      <div className="h-screen flex justify-center items-center w-full">
+        <BounceLoader color="#3b82f6" />
       </div>
     );
   }
-
   return (
     <>
       <Navbar />

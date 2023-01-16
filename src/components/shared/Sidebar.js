@@ -1,12 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { HashLoader } from 'react-spinners';
+import { BounceLoader } from 'react-spinners';
 import { AuthContext } from '../../contexts/UserContext';
 import Categories from '../Categories';
 
 const Sidebar = () => {
   const [categories, setCategories] = useState(null);
-  const { user, loading, logout } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
 
   useEffect(() => {
     fetch('https://webdev101-server.vercel.app/courses-categories')
@@ -15,13 +15,13 @@ const Sidebar = () => {
       .catch((err) => alert(err));
   }, []);
 
-  // if (loading) {
-  //   return (
-  //     <div>
-  //       <HashLoader color="#3b82f6" />
-  //     </div>
-  //   );
-  // }
+  if (loading) {
+    return (
+      <div>
+        <BounceLoader color="#3b82f6" />
+      </div>
+    );
+  }
 
   return (
     <div className="sidebar sticky top-0 border-r-1 border-gray-200">
@@ -63,7 +63,7 @@ const Sidebar = () => {
             <Categories categories={categories} />
           ) : (
             <div className="text-center m-12">
-              <HashLoader color="#3b82f6" />
+              <BounceLoader color="#3b82f6" />
             </div>
           )}
         </div>

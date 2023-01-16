@@ -10,7 +10,7 @@ const Navbar = () => {
   const [dark, setDark] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  const { user, loading, logout } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
 
   const changeTheme = (theme) => {
     if (theme) {
@@ -32,7 +32,6 @@ const Navbar = () => {
                   className="text-2xl font-bold  transition-colors duration-300 transform dark:text-white lg:text-3xl border-b-2 border-blue-500 hover:text-gray-700 dark:hover:text-gray-300 text-blue-500"
                   to="/"
                 >
-                  {' '}
                   WebDev101
                 </NavLink>
               </div>
